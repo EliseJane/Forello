@@ -1,7 +1,7 @@
 class Api::BoardsController < ApplicationController
   def index
     @boards = Board.all
-    render :index
+    # render :index
   end
 
   def create
@@ -19,7 +19,7 @@ class Api::BoardsController < ApplicationController
   end
 
   def show
-
+    @board = Board.find(params[:id])
   end
 
   private
