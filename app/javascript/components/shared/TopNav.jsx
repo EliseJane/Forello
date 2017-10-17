@@ -10,7 +10,7 @@ const TopNav = () => (
           <div className="search search-icon icon"></div>
           <div className="active-search">
             <div>
-              <input type="text" /> 
+              <input type="text" />
             </div>
             <i className="x-icon icon"></i>
             <i className="goto-icon icon"></i>

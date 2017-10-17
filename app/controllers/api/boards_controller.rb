@@ -18,6 +18,10 @@ class Api::BoardsController < ApplicationController
     render 'api/shared/error', status: :unprocessable_entity
   end
 
+  def show
+
+  end
+
   private
 
   def board_params
