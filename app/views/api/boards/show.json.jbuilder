@@ -1,2 +1,3 @@
 json.merge! @board.attributes
-json.lists []
+
+json.lists @board.lists
