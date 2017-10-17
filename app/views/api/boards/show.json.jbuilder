@@ -7,5 +7,5 @@ json.lists @board.lists do |list|
   json.created_at list.created_at
   json.updated_at list.updated_at
   json.position list.position
-  json.cards list.cards
+  json.cards list.cards, :id, :title, :description, :due_date, :comments_count, :list_id, :board_id, :position
 end
