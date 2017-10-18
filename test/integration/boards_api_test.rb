@@ -9,6 +9,28 @@ class BoardsAPITest < ActionDispatch::IntegrationTest
     end
   end
 
+  class GetBoardTest < ActionDispatch::IntegrationTest
+    def setup
+      @new_board = Board.create( title: "test board")
+    end
+
+    def teardown
+      @new_board.delete
+    end
+
+    test "returns a json object" do
+      get "/api/boards/#{@new_board.id}",
+        headers: { 'Accept' => 'application/json' }
+      assert_match /\{.*\}/, response.body
+    end
+
+    test "returns correct board" do
+      get "/api/boards/#{@new_board.id}",
+        headers: { 'Accept' => 'application/json' }
+      assert_includes JSON.parse(response.body).to_s, @new_board.title 
+    end
+  end
+
   class PostBoardsTest < ActionDispatch::IntegrationTest
     class ValidDataTest < ActionDispatch::IntegrationTest
       test "creates a new board" do
