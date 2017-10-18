@@ -3,4 +3,6 @@ class Card < ApplicationRecord
 
   belongs_to :list
   belongs_to :board
+  has_many :labelizations
+  has_many :labels, through: :labelizations
 end
