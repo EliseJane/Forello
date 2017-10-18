@@ -50,6 +50,16 @@ class BoardsAPITest < ActionDispatch::IntegrationTest
       assert_equal JSON.parse(response.body)['lists'][0]['cards'].size, 0
     end
 
+    test "returns cards if cards exist" do
+      list = List.create(title: 'test list', position: 0)
+      @new_board.lists << list
+      list.cards << Card.create(title: 'test card', position: 0)
+
+      get "/api/boards/#{@new_board.id}",
+        headers: { 'Accept' => 'application/json' }
+      assert_equal JSON.parse(response.body)['lists'][0]['cards'].size, 1
+    end
+
     test "returns 404 error if board doesn't exist" do
       get "/api/boards/1000000",
         headers: { 'Accept' => 'application/json'}
