@@ -12,9 +12,9 @@ json.lists @board.lists do |list|
     json.title card.title
     json.description card.description
     json.due_date card.due_date
-    json.comments_count card.comments_count
+    json.comments_count 0
     json.list_id card.list_id
-    json.board_id card.board_id
+    json.board_id card.list.board_id
     json.position card.position
     json.labels card.labels.map(&:color)
   end

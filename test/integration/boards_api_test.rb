@@ -29,6 +29,33 @@ class BoardsAPITest < ActionDispatch::IntegrationTest
         headers: { 'Accept' => 'application/json' }
       assert_includes response.body, @new_board.title
     end
+
+    test "return empty lists array if no lists" do
+      get "/api/boards/#{@new_board.id}",
+        headers: { 'Accept' => 'application/json' }
+      assert_equal JSON.parse(response.body)['lists'].size, 0
+    end
+
+    test "returns lists if lists exists" do
+      @new_board.lists << List.create(title: 'test list', position: 0)
+      get "/api/boards/#{@new_board.id}",
+        headers: { 'Accept' => 'application/json' }
+      assert_equal JSON.parse(response.body)['lists'].size, 1
+    end
+
+    test "returns empty cards array if no cards" do
+      @new_board.lists << List.create(title: 'test list', position: 0)
+      get "/api/boards/#{@new_board.id}",
+        headers: { 'Accept' => 'application/json' }
+      assert_equal JSON.parse(response.body)['lists'][0]['cards'].size, 0
+    end
+
+    test "returns 404 error if board doesn't exist" do
+      get "/api/boards/1000000",
+        headers: { 'Accept' => 'application/json'}
+
+      assert_response 404
+    end
   end
 
   class PostBoardsTest < ActionDispatch::IntegrationTest

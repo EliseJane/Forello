@@ -1,4 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
+# This file should contain all the record creation needed to seed the database with.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
@@ -14,14 +14,15 @@ end
 
 Board.create(title: 'First Board')
 
-List.create(title: 'First List', position: 1.0, board_id: 1)
-Card.create(title: 'First Card', position: 1.0, list_id: 1, board_id: 1, description: 'just a test', due_date: nil, comments_count: 3)
-Card.create(title: 'Second Card', position: 2.0, list_id: 1, board_id: 1, description: 'something to do', due_date: nil, comments_count: 0)
-Card.create(title: 'Third Card', position: 3.0, list_id: 1, board_id: 1, description: 'whatever you want', due_date: nil, comments_count: 1)
+list1 = List.create(title: 'First List', position: 1.0, board_id: 1)
+list1.cards << Card.create(title: 'First Card', position: 1.0, description: 'just a test', due_date: nil)
+list1.cards << Card.create(title: 'Second Card', position: 2.0, description: 'something to do', due_date: nil)
+list1.cards << Card.create(title: 'Third Card', position: 3.0, description: 'whatever you want', due_date: nil)
 
 
-List.create(title: 'Second List', position: 2.0, board_id: 1)
-card = Card.create(title: 'Fourth Card', position: 1.0, list_id: 2, board_id: 1, description: 'tasks tasks tasks', due_date: nil, comments_count: 0)
+list2 = List.create(title: 'Second List', position: 2.0, board_id: 1)
+card = Card.create(title: 'Fourth Card', position: 1.0, description: 'tasks tasks tasks', due_date: nil)
+list2.cards << card
 card.labels << Label.first
 card.labels << Label.third
 
