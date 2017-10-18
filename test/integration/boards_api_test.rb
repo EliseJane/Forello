@@ -27,7 +27,7 @@ class BoardsAPITest < ActionDispatch::IntegrationTest
     test "returns correct board" do
       get "/api/boards/#{@new_board.id}",
         headers: { 'Accept' => 'application/json' }
-      assert_includes JSON.parse(response.body).to_s, @new_board.title 
+      assert_includes response.body, @new_board.title
     end
   end
 
