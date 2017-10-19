@@ -21,7 +21,7 @@ list1.cards << Card.create(title: 'Third Card', position: 3.0, description: 'wha
 
 
 list2 = List.create(title: 'Second List', position: 2.0, board_id: 1)
-card = Card.create(title: 'Fourth Card', position: 1.0, description: 'tasks tasks tasks', due_date: nil)
+card = Card.create(title: 'Fourth Card', position: 1.0, description: 'tasks tasks tasks', due_date: Time.now)
 list2.cards << card
 card.labels << Label.first
 card.labels << Label.third
