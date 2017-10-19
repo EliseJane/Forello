@@ -6,9 +6,9 @@ import Board from './Board';
 import * as actions from '../../actions/BoardActions';
 
 class BoardContainer extends React.Component {
-  // state = {
-  //   title: null,
-  // };
+  state = {
+    title: null,
+  };
 
   static contextTypes = {
     store: PropTypes.object.isRequired
@@ -16,7 +16,7 @@ class BoardContainer extends React.Component {
 
   componentDidMount() {
     const store = this.context.store;
-    this.unsubscribe = store.subscribe(() => this.forceUpdate());
+    this.unsubscribe = store.subscribe(() => this.forceUpdateComponentAndState());
     store.dispatch(actions.fetchBoard(this.props.match.params.id));
   }
 
@@ -29,10 +29,10 @@ class BoardContainer extends React.Component {
     return store.getState().lists;
   }
 
-  // forceUpdateComponentAndState = () => {
-  //   this.forceUpdate();
-  //   this.setState(title: currentBoardTitle());
-  // }
+  forceUpdateComponentAndState = () => {
+    this.forceUpdate();
+    this.setState({title: this.currentBoardTitle()});
+  }
 
   currentBoardTitle = () => {
     const store = this.context.store;
