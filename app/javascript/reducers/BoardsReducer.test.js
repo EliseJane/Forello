@@ -10,6 +10,24 @@ describe("BoardsReducer", () => {
     });
   });
 
+  describe("FETCH_BOARD_REQUEST", () => {
+    it("returns the board information from action.board", () => {
+      expect(
+        reducer([], {
+          type: types.FETCH_BOARD_SUCCESS,
+          board: {
+            id: 1,
+            title: 'Test Board',
+            lists: [],
+          }
+        })
+      ).toEqual([{
+        id: 1,
+        title: 'Test Board',
+      }])
+    });
+  });
+
   describe("FETCH_BOARDS_SUCCESS", () => {
     it("returns the action.boards value", () => {
       expect(

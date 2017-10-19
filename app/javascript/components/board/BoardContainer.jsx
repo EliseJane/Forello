@@ -19,16 +19,22 @@ class BoardContainer extends React.Component {
   componentWillUnmount() {
     this.unsubscribe();
   }
-// this is where we left off
+
   allLists = () => {
     const store = this.context.store;
     return store.getState().lists;
   }
 
+  currentBoardTitle = () => {
+    const store = this.context.store;
+    const id = +this.props.match.params.id;
+    return store.getState().boards.filter(board => +board.id === id)[0].title;
+  }
+
   render() {
     return (
       <div>
-        <Board lists={this.allLists()} title= />
+        <Board lists={this.allLists()} title={this.currentBoardTitle()} />
       </div>
     )
   }
