@@ -22,7 +22,6 @@ class BoardContainer extends React.Component {
 
   allLists = () => {
     const store = this.context.store;
-    debugger;
     return store.getState().lists;
   }
 
@@ -31,13 +30,13 @@ class BoardContainer extends React.Component {
     const id = +this.props.match.params.id;
     const boards = store.getState().boards;
     const board = boards.filter(board => +board.id === id)[0];
-    return board.title;
+    return (board && board.title) || null;
   }
 
   render() {
     return (
       <div>
-        <Board lists={this.allLists()} title={this.currentBoardTitle()} />
+        <Board lists={this.allLists()} board={this.currentBoardTitle()} />
       </div>
     )
   }

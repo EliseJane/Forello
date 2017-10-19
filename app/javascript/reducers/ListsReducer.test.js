@@ -26,9 +26,9 @@ describe("ListsReducer", () => {
       expect(
         reducer([], {
           type: types.FETCH_BOARD_SUCCESS,
-          board: { id: 1, title: "My board", lists: [{ id: 1, title: "My list" }] }
+          board: { id: 1, title: "My board", lists: [{ id: 1, title: "My list" }, { id: 2, title: "My second list" }] }
         })
-      ).toEqual([{id: 1, title: "My list"}]);
+      ).toEqual([{ id: 1, title: "My list" }, { id: 2, title: "My second list" }]);
     });
   });
 });

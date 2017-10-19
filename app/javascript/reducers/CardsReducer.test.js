@@ -36,7 +36,7 @@ describe("CardsReducer", () => {
                    lists: [{
                      id: 1,
                      title: "My list",
-                     cards: [{ id: 1, title: "My card" }]
+                     cards: [{ id: 1, title: "My card" }, {id: 3, title: "My third card"} ]
                    },
                    {
                      id: 2,
@@ -44,8 +44,8 @@ describe("CardsReducer", () => {
                      cards: [{ id: 2, title: "My Second card" }]
                    }]
                  }
-        })
-      ).toEqual([{id: 1, title: "My card"}, { id: 2, title: "My Second card" }]);
+        }).length
+      ).toEqual(3);
     });
   });
 });
