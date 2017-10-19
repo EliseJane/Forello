@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ListContainer from './ListContainer';
-// import ToggleableCreateListTile from './ToggleableCreateListTile';
+import CreateListTile from './ToggleableCreateListTile';
 
 import * as actions from '../../actions/BoardActions';
 
@@ -15,7 +15,7 @@ const Board = (props) => {
             <div id="existing-lists" className="existing-lists">
               {lists}
             </div>
-            {/*<ToggleableCreateListTile />*/}
+            <CreateListTile />
         </div>
     </main>
   );
