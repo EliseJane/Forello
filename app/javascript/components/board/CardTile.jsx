@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const CardTile = (props) => {
 
-  const labelsHTML = props.card.labels.map(label => (
-    <div className={`card-label ${label} colorblindable`}></div>
+  const labelsHTML = props.card.labels.map((label, index) => (
+    <div key={index} className={`card-label ${label} colorblindable`}></div>
     )
   )
 
