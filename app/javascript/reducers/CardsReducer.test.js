@@ -26,5 +26,26 @@ describe("CardsReducer", () => {
         })
       ).toEqual([{id: 1, title: "My card"}]);
     });
+
+    it("flattens all card arrays into single array", () => {
+      expect(
+        reducer([], {
+          type: types.FETCH_BOARD_SUCCESS,
+          board: { id: 1,
+                   title: "My board",
+                   lists: [{
+                     id: 1,
+                     title: "My list",
+                     cards: [{ id: 1, title: "My card" }]
+                   },
+                   {
+                     id: 2,
+                     title: "My Second list",
+                     cards: [{ id: 2, title: "My Second card" }]
+                   }]
+                 }
+        })
+      ).toEqual([{id: 1, title: "My card"}, { id: 2, title: "My Second card" }]);
+    });
   });
 });
