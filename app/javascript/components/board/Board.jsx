@@ -11,12 +11,12 @@ const Board = (props) => {
 
   return (
     <main>
-        <div id="list-container" className="list-container">
-            <div id="existing-lists" className="existing-lists">
-              {lists}
-            </div>
-            <CreateListTile />
+      <div id="list-container" className="list-container">
+        <div id="existing-lists" className="existing-lists">
+          {lists}
         </div>
+        <CreateListTile />
+      </div>
     </main>
   );
 }

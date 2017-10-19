@@ -18,10 +18,11 @@ class ToggleableCreateBoardTile extends React.Component {
   }
 
   render() {
-    const isSelected = this.state.showForm ? 'selected new-list' : 'new-list';
+    const isSelected = this.state.showForm ? 'selected' : '';
+
     return (
-      <div onClick={this.openForm} id="new-list" className={isSelected}>
-        <span>Add a list...</span>
+      <div id="new-list" className={`new-list ${isSelected}`}>
+        <span onClick={this.openForm}>Add a list...</span>
         <input type="text" value={this.state.title} placeholder="Add a list..." />
         <div>
             <input type="submit" className="button" value="Save" />

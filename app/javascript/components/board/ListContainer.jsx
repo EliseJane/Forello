@@ -6,6 +6,10 @@ import List from './List';
 import * as actions from '../../actions/BoardActions';
 
 class ListContainer extends React.Component {
+  static contextTypes = {
+    store: PropTypes.object.isRequired
+  };
+
   state = {
     title: this.props.list.title
   };
@@ -30,7 +34,9 @@ class ListContainer extends React.Component {
                     <div className="add-options"><span>...</span>
                     </div>
                 </div>
-                  <List cards={this.allTheseCards()} id={this.props.list.id} />
+
+                <List cards={this.allTheseCards()} id={this.props.list.id} />
+
                 <div className="add-dropdown add-bottom">
                     <div className="card"><div className="card-info"></div><textarea name="add-card"></textarea><div className="members"></div></div>
                     <a className="button">Add</a><i className="x-icon icon"></i>

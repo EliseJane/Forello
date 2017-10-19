@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import Card from './Card';
+{/* import Card from './Card'; */}
 
 import * as actions from '../../actions/BoardActions';
 
@@ -10,7 +10,7 @@ const List = (props) => {
 
   return (
     <div id="cards-container" data-id={`list-${props.id}-cards`}>
-        {/* {cardComponents} */}
+      {/* {cardComponents} */}
     </div>
   );
 };
