@@ -26,6 +26,18 @@ describe("BoardsReducer", () => {
         title: 'Test Board',
       }])
     });
+
+    it("returns the board information from action.board concatenated at the end", () => {
+      const board1 = { id: 1, title: "Old board", };
+      const board2 = { id: 2, title: "New board", lists: []};
+
+      expect(
+        reducer([board1], {
+          type: types.FETCH_BOARD_SUCCESS,
+          board: board2,
+        })
+      ).toEqual([board1, { id: 2, title: "New board" }]);
+    });
   });
 
   describe("FETCH_BOARDS_SUCCESS", () => {

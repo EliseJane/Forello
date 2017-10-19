@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import TopNav from './shared/TopNav';
 import BoardsDashboardContainer from './dashboard/BoardsDashboardContainer';
+import BoardContainer from './board/BoardContainer';
 
 import { fetchBoards } from '../actions/BoardActions';
 

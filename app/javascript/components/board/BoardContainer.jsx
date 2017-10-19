@@ -22,13 +22,16 @@ class BoardContainer extends React.Component {
 
   allLists = () => {
     const store = this.context.store;
+    debugger;
     return store.getState().lists;
   }
 
   currentBoardTitle = () => {
     const store = this.context.store;
     const id = +this.props.match.params.id;
-    return store.getState().boards.filter(board => +board.id === id)[0].title;
+    const boards = store.getState().boards;
+    const board = boards.filter(board => +board.id === id)[0];
+    return board.title;
   }
 
   render() {
