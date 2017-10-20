@@ -24,6 +24,6 @@ class BoardTest < ApplicationSystemTestCase
     create(:card, list_id: 2)
     visit board_path(1)
 
-    assert_selector ".list-wrapper:nth-of-type(2) .card", count: 2
+    assert_selector ".list-wrapper:nth-of-type(2) .card", count: 1
   end
 end
