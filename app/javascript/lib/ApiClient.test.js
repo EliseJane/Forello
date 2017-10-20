@@ -68,6 +68,61 @@ describe("ApiClient", () => {
     });
   });
 
+  describe("createList", () => {
+    describe("successful request", () => {
+      const newList = {
+        board_id: 1,
+        list: {
+          title: "my list",
+          position: 0.0
+        }
+      };
+
+      it("calls the callback with the new list", async () => {
+        const cb = jest.fn();
+
+        mock.onPost(routes.CREATE_LIST_URL).reply(201, { ...newList, list: {...newList.list, id: 3 }});
+        client.createList(newList, cb);
+
+        await flushPromises();
+
+        expect(cb).toHaveBeenCalledWith({ ...newList, list: {...newList.list, id: 3 }});
+      });
+    });
+
+    describe("failed request", () => {
+      const originalError = global.console.error;
+      const errorText = "That is not a valid record";
+
+      beforeEach(() => {
+        global.console.error = jest.fn();
+        mock.onPost(routes.CREATE_LIST_URL).reply(422, { error: errorText });
+      });
+
+      afterEach(() => {
+        global.console.error = originalError;
+      });
+
+      it("logs the error", async () => {
+        client.createList({});
+
+        await flushPromises();
+
+        expect(global.console.error).toHaveBeenCalledWith(`HTTP Error: ${errorText}`);
+      });
+
+      it("doesn't call the callback", async () => {
+        const cb = jest.fn();
+
+        client.createList({}, cb);
+
+        await flushPromises();
+
+        expect(cb).not.toHaveBeenCalled();
+      });
+    })
+  })
+
   describe("createBoard", () => {
     describe("successful request", () => {
       const newBoard = {

@@ -14,10 +14,6 @@ class BoardsAPITest < ActionDispatch::IntegrationTest
       @new_board = Board.create( title: "test board")
     end
 
-    def teardown
-      @new_board.delete
-    end
-
     test "returns a json object" do
       get "/api/boards/#{@new_board.id}",
         headers: { 'Accept' => 'application/json' }
