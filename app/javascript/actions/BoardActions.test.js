@@ -26,6 +26,24 @@ describe("Board actions", () => {
     store.clearActions()
   });
 
+  describe("fetchBoardRequest", () => {
+    it("returns the correct object", () => {
+      expect(
+        actions.fetchBoardRequest()
+      ).toEqual({ type: types.FETCH_BOARD_REQUEST });
+    });
+  });
+
+  describe("fetchBoardSuccess", () => {
+    it("returns the correct object", () => {
+      const board = { id: 1, title: "my board", lists: [] };
+
+      expect(
+        actions.fetchBoardSuccess(board)
+      ).toEqual({ type: types.FETCH_BOARD_SUCCESS, board });
+    });
+  });
+
   describe("fetchBoardsRequest", () => {
     it("returns the correct object", () => {
       expect(
