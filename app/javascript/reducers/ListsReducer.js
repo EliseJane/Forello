@@ -4,9 +4,10 @@ export default function listsReducer(state = [], action) {
     return lists;
   } else if (action.type === 'CREATE_LIST_SUCCESS') {
     const newList = action.list;
-    newList.position = Number(action.list.position);
-    newList.id = Number(action.list.id);
-    newList.board_id = Number(action.board_id);
+    newList.position = Number(newList.position);
+    newList.id = Number(newList.id);
+    newList.board_id = Number(newList.board_id);
+
     return state.concat(newList);
   } else {
     return state;

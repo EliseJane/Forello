@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ListContainer from './ListContainer';
-import CreateListTile from './ToggleableCreateListTile';
+import CreateListTileContainer from './CreateListTileContainer';
 
 import * as actions from '../../actions/BoardActions';
 
@@ -27,7 +27,10 @@ const Board = (props) => {
           <div id="existing-lists" className="existing-lists">
             {lists}
           </div>
-          <CreateListTile />
+          <CreateListTileContainer
+            id={props.id}
+            position={props.lists.length + 1}
+          />
         </div>
       </main>
     </div>

@@ -31,4 +31,18 @@ describe("ListsReducer", () => {
       ).toEqual([{ id: 1, title: "My list" }, { id: 2, title: "My second list" }]);
     });
   });
+
+  describe("CREATE_LIST_SUCCESS", () => {
+    it("returns the current state with the `list` action value concatenated", () => {
+      const list1 = { id: 1, title: "Old list", board_id: 1 };
+      const list2 = { board_id: 1, id: 2, title: "New list", position: 1.0 }
+
+      expect(
+        reducer([list1], {
+          type: types.CREATE_LIST_SUCCESS,
+          list: list2,
+        })
+      ).toEqual([list1, list2]);
+    });
+  });
 });

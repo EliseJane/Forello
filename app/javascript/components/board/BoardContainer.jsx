@@ -35,7 +35,11 @@ class BoardContainer extends React.Component {
 
   render() {
     return (
-      <Board lists={this.allLists()} title={this.currentBoardTitle()} />
+      <Board
+        lists={this.allLists()}
+        title={this.currentBoardTitle()}
+        id={+this.props.match.params.id}
+      />
     )
   }
 }

@@ -68,25 +68,75 @@ describe("ApiClient", () => {
     });
   });
 
+  describe("getBoard", () => {
+    const board = {
+      id: 1,
+      title: "My board",
+      lists: [],
+    };
+
+    describe("successful request", () => {
+      it("calls the callback with the boards", async () => {
+        const cb = jest.fn();
+
+        mock.onGet(routes.BOARD_SHOW_URL + '1').reply(200, board);
+        client.getBoard('1', cb);
+
+        await flushPromises();
+
+        expect(cb).toHaveBeenCalledWith(board);
+      });
+    });
+
+    describe("failed request", () => {
+      const originalError = global.console.error;
+      const errorText = "You don't have access to that";
+
+      beforeEach(() => {
+        global.console.error = jest.fn();
+        mock.onGet(routes.BOARD_SHOW_URL + '1').reply(401, { error: errorText });
+      });
+
+      afterEach(() => {
+        global.console.error = originalError;
+      });
+
+      it("logs the error", async () => {
+        client.getBoard('1', (board) => {});
+
+        await flushPromises();
+
+        expect(global.console.error).toHaveBeenCalledWith(`HTTP Error: ${errorText}`);
+      });
+
+      it("doesn't call the callback", async () => {
+        const cb = jest.fn();
+        client.getBoard('1', cb);
+
+        await flushPromises();
+
+        expect(cb).not.toHaveBeenCalled();
+      });
+    });
+  });
+
   describe("createList", () => {
     describe("successful request", () => {
       const newList = {
         board_id: 1,
-        list: {
-          title: "my list",
-          position: 0.0
-        }
+        title: "my list",
+        position: 0.0
       };
 
       it("calls the callback with the new list", async () => {
         const cb = jest.fn();
 
-        mock.onPost(routes.CREATE_LIST_URL).reply(201, { ...newList, list: {...newList.list, id: 3 }});
+        mock.onPost(routes.CREATE_LIST_URL).reply(201, { ...newList, id: 3 });
         client.createList(newList, cb);
 
         await flushPromises();
 
-        expect(cb).toHaveBeenCalledWith({ ...newList, list: {...newList.list, id: 3 }});
+        expect(cb).toHaveBeenCalledWith({ ...newList, id: 3 });
       });
     });
 
