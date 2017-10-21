@@ -7,7 +7,12 @@ const CreateListTileForm = props => {
   return (
     <div id="new-list" className={`new-list ${isSelected}`}>
       <span onClick={props.openForm}>Add a list...</span>
-      <input onChange={props.onChange} type="text" value={props.title} placeholder="Add a list..." />
+      <input
+        name="title"
+        onChange={props.onChange}
+        type="text" value={props.title}
+        placeholder="Add a list..."
+      />
       <div>
           <input
             onClick={props.onSave}

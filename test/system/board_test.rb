@@ -36,4 +36,21 @@ class BoardTest < ApplicationSystemTestCase
 
     assert_selector ".list-wrapper:nth-of-type(2) .card", count: 2
   end
+
+  class NewListTileTest < ApplicationSystemTestCase
+    test "it can be toggled" do
+      create(:board)
+      visit board_path(1)
+
+      refute_selector ".new-list.selected"
+
+      find("#new-list span").click
+
+      assert_selector ".new-list.selected"
+
+      find(".x-icon").click
+
+      refute_selector ".new-list.selected"
+    end
+  end
 end
