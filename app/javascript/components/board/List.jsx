@@ -7,13 +7,28 @@ import * as actions from '../../actions/BoardActions';
 
 const List = (props) => {
   const cardComponents = props.cards.map(card => <CardTile card={card} key={card.id} />);
+  const renderTitle = () => {
+    if (props.editing) {
+      return (
+        <input
+          className="list-title edit-title"
+          value={props.title}
+          autoFocus={true}
+          onChange={props.onChange}
+          onBlur={props.onBlur}
+        />
+        );
+    } else {
+      return (<p className="list-title">{props.title}</p>);
+    }
+  };
 
   return (
     <div className="list-background">
         <div className="list">
           <a className="more-icon sm-icon" href=""></a>
-          <div>
-              <p className="list-title">{props.title}</p>
+          <div onClick={props.onClick}>
+              {renderTitle()}
           </div>
           <div className="add-dropdown add-top">
               <div className="card"></div><a className="button">Add</a><i className="x-icon icon"></i>
