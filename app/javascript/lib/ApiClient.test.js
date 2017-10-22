@@ -194,37 +194,37 @@ describe("ApiClient", () => {
       });
     });
 
-    // describe("failed 404 request", () => {
-    //   const originalError = global.console.error;
-    //   const errorText = "This list could not be found";
-    //
-    //   beforeEach(() => {
-    //     global.console.error = jest.fn();
-    //     mock.onPost(routes.UPDATE_LIST_URL + '1').reply(404, { error: errorText });
-    //   });
-    //
-    //   afterEach(() => {
-    //     global.console.error = originalError;
-    //   });
-    //
-    //   it("logs the error", async () => {
-    //     client.updateList({});
-    //
-    //     await flushPromises();
-    //
-    //     expect(global.console.error).toHaveBeenCalledWith(`Error: ${errorText}`);
-    //   });
-    //
-    //   it("doesn't call the callback", async () => {
-    //     const cb = jest.fn();
-    //
-    //     client.updateList({}, cb);
-    //
-    //     await flushPromises();
-    //
-    //     expect(cb).not.toHaveBeenCalled();
-    //   });
-    // })
+    describe("failed 404 request", () => {
+      const originalError = global.console.error;
+      const errorText = "This list could not be found";
+
+      beforeEach(() => {
+        global.console.error = jest.fn();
+        mock.onPatch(routes.UPDATE_LIST_URL + '1').reply(404, { error: errorText });
+      });
+
+      afterEach(() => {
+        global.console.error = originalError;
+      });
+      //
+      // it("logs the error", async () => {
+      //   client.updateList({});
+      //
+      //   await flushPromises();
+      //
+      //   expect(global.console.error).toHaveBeenCalledWith(`Error: ${errorText}`);
+      // });
+
+      it("doesn't call the callback", async () => {
+        const cb = jest.fn();
+
+        client.updateList({}, cb);
+
+        await flushPromises();
+
+        expect(cb).not.toHaveBeenCalled();
+      });
+    })
   });
 
   describe("createBoard", () => {
