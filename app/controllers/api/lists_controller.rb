@@ -15,9 +15,8 @@ class Api::ListsController < ApplicationController
 
   def update
     @list = List.find(params[:id])
-    @list.title = list_params[:title]
 
-    if @list.save
+    if @list.update(list_params)
       render :update, status: :ok
     else
       @error = @list.errors.full_messages.join(', ')

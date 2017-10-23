@@ -1,13 +1,13 @@
-export default function PositionCalculator(items, targetPosition, originalPosition) {
+export default function PositionCalculator(items, targetIndex, originalIndex) {
   const itemsClone = items.slice();
   const isOnly = itemsClone.length === 0;
-  const isFirst = targetPosition === 0;
+  const isFirst = targetIndex === 0;
 
   itemsClone.sort((a, b) => a.position - b.position);
 
-  if (originalPosition === 0 || originalPosition > 0) itemsClone.splice(originalPosition, 1);
+  if (originalIndex === 0 || originalIndex > 0) itemsClone.splice(originalIndex, 1);
 
-  const isLast = targetPosition >= itemsClone.length;
+  const isLast = targetIndex >= itemsClone.length;
 
   if (isOnly || itemsClone.length === 0) {
     return 65535;
@@ -18,8 +18,8 @@ export default function PositionCalculator(items, targetPosition, originalPositi
   } else {
     let itemBefore, itemAfter;
 
-    itemBefore = itemsClone[targetPosition - 1];
-    itemAfter = itemsClone[targetPosition];
+    itemBefore = itemsClone[targetIndex - 1];
+    itemAfter = itemsClone[targetIndex];
 
     return (itemBefore.position + itemAfter.position) / 2;
   }

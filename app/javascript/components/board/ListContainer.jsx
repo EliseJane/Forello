@@ -44,7 +44,7 @@ class ListContainer extends React.Component {
 
   render() {
     return (
-      <div className="list-wrapper">
+      <div className="list-wrapper" data-index={this.props.idx}>
         <List
           cards={this.allTheseCards()}
           title={this.state.title}
