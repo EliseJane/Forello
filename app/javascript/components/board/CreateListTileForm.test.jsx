@@ -5,11 +5,9 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 describe("CreateListTileForm", () => {
   it("renders closed form when showForm attribute is false", () => {
-    const emptyFn = () => {};
     const wrapper = shallow(
       <CreateListTileForm
-        showForm={false}
-      />
+        showForm={false} />
     );
 
     expect(
@@ -18,11 +16,9 @@ describe("CreateListTileForm", () => {
   });
 
   it("renders open form when showForm attribute is true", () => {
-    const emptyFn = () => {};
     const wrapper = shallow(
       <CreateListTileForm
-        showForm={true}
-      />
+        showForm={true} />
     );
 
     expect(
@@ -31,7 +27,6 @@ describe("CreateListTileForm", () => {
   });
 
   it("renders non-disabled save button when title is not empty", () => {
-    const emptyFn = () => {};
     const wrapper = shallow(
       <CreateListTileForm
         showForm={true}
@@ -45,7 +40,6 @@ describe("CreateListTileForm", () => {
   });
 
   it("renders disabled save button when title is empty", () => {
-    const emptyFn = () => {};
     const wrapper = shallow(
       <CreateListTileForm
         showForm={true}
