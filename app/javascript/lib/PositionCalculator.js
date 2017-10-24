@@ -1,7 +1,7 @@
 export default function PositionCalculator(items, targetIndex, originalIndex) {
   const itemsClone = items.slice();
   const isOnly = itemsClone.length === 0;
-  const isFirst = targetIndex === 0;
+  const isFirst = targetIndex <= 0;
 
   itemsClone.sort((a, b) => a.position - b.position);
 
