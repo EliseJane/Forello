@@ -14,6 +14,10 @@ class BoardContainer extends React.Component {
     store: PropTypes.object.isRequired
   };
 
+  state = {
+    listAddingCard: null
+  };
+
   componentDidMount() {
     const store = this.context.store;
     this.unsubscribe = store.subscribe(() => this.forceUpdate());
@@ -69,6 +73,10 @@ class BoardContainer extends React.Component {
     }
   }
 
+  changeListAddingCard = (id) => {
+    this.setState({ listAddingCard: id });
+  }
+
   render() {
     return (
       <Board
@@ -76,6 +84,8 @@ class BoardContainer extends React.Component {
         title={this.currentBoardTitle()}
         id={+this.props.match.params.id}
         newPosition={this.lastPosition()+100}
+        listAddingCard={this.state.listAddingCard}
+        changeListAddingCard={this.changeListAddingCard}
       />
     )
   }

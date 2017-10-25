@@ -42,9 +42,26 @@ class ListContainer extends React.Component {
     this.setState({ title: e.target.value });
   };
 
+  listWrapperClasses = () => {
+    let classes = "list-wrapper";
+    if (this.props.listAddingCard === this.props.list.id) {
+      classes += " add-dropdown-active";
+    }
+    return classes;
+  }
+
+  lastPosition = () => {
+    const cards = this.allTheseCards();
+    if (cards[cards.length-1]) {
+      return cards[cards.length-1].position;
+    } else {
+      return 0;
+    }
+  }
+
   render() {
     return (
-      <div className="list-wrapper" data-index={this.props.idx}>
+      <div className={this.listWrapperClasses()} data-index={this.props.idx}>
         <List
           cards={this.allTheseCards()}
           title={this.state.title}
@@ -53,6 +70,10 @@ class ListContainer extends React.Component {
           onClick={this.handleClick}
           onBlur={this.handleBlur}
           onChange={this.handleChange}
+          listAddingCard={this.props.listAddingCard}
+          changeListAddingCard={this.props.changeListAddingCard}
+          newPosition={this.lastPosition()+100}
+          allCards={this.allTheseCards}
         />
       </div>
     )

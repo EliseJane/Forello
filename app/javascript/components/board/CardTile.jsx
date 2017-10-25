@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CardTile = (props) => {
+import { Link } from 'react-router-dom';
 
+const CardTile = (props) => {
   const labelsHTML = props.card.labels.map((label, index) => (
     <div key={index} className={`card-label ${label} colorblindable`}></div>
     )
@@ -24,6 +25,7 @@ const CardTile = (props) => {
 
   return (
     <div className="card-background">
+      <Link to={`/cards/${props.card.id}`}>
         <div className="card "><i className="edit-toggle edit-icon sm-icon"></i>
             <div className="card-info">
               {labelsHTML}
@@ -31,6 +33,7 @@ const CardTile = (props) => {
             </div>
             {cardIconsHTML()}
         </div>
+      </Link>
     </div>
   );
 };

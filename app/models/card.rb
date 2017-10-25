@@ -4,4 +4,5 @@ class Card < ApplicationRecord
   belongs_to :list
   has_many :labelizations
   has_many :labels, through: :labelizations
+  has_many :comments
 end

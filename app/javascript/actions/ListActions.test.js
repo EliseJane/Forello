@@ -22,7 +22,7 @@ describe("List actions", () => {
 
   afterEach(() => {
     apiClient.getBoards.mockClear();
-    apiClient.createBoard.mockClear();
+    apiClient.createList.mockClear();
     store.clearActions()
   });
 

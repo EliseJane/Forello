@@ -39,12 +39,23 @@ class ListsAPITest < ActionDispatch::IntegrationTest
     end
 
     class InvalidDataTest < ActionDispatch::IntegrationTest
+      def setup
+        Board.create(id: 1, title: 'New Board')
+      end
+
       test "returns a 422" do
         post "/api/lists",
-          params: { list: { title: '' } },
+          params: { list: { board_id: 1, title: '' } },
           headers: { 'Accept' => 'application/json' }
 
         assert_response 422
+      end
+      test "returns a 404" do
+        post "/api/lists",
+          params: { list: { board_id: 4, title: "title", position: 2.0 } },
+          headers: { 'Accept' => 'application/json' }
+
+        assert_response 404
       end
     end
   end

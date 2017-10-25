@@ -30,6 +30,7 @@ class Application extends React.Component {
         <TopNav />
         <Route path='/' exact component={BoardsDashboardContainer} />
         <Route path='/boards/:id' component={BoardContainer} />
+        {/*<Route path='/cards/:id' component={CardContainer} />*/}
       </div>
     );
   }
