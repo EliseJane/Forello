@@ -66,6 +66,11 @@ const apiClient = {
       .then(unwrapData)
       .then(callback)
       .catch(logError);
+  },
+  deleteCard: function(card) {
+    return axios.delete(routes.DELETE_CARD_URL + card.id, { card })
+      .then(unwrapData)
+      .catch(logError);
   }
 };
 

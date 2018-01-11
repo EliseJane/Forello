@@ -16906,10 +16906,10 @@ ReactRef.shouldUpdateRefs = function (prevElement, nextElement) {
   // is made. It probably belongs where the key checking and
   // instantiateReactComponent is done.
 
-  var prevRef = null;
+  var preEOef = null;
   var prevOwner = null;
   if (prevElement !== null && typeof prevElement === 'object') {
-    prevRef = prevElement.ref;
+    preEOef = prevElement.ref;
     prevOwner = prevElement._owner;
   }
 
@@ -16920,7 +16920,7 @@ ReactRef.shouldUpdateRefs = function (prevElement, nextElement) {
     nextOwner = nextElement._owner;
   }
 
-  return prevRef !== nextRef ||
+  return preEOef !== nextRef ||
   // If owner changes but we have an unchanged function ref, don't update refs
   typeof nextRef === 'string' && nextOwner !== prevOwner;
 };
@@ -22030,7 +22030,7 @@ var ReactCompositeComponent = {
    */
   _updateRenderedComponent: function (transaction, context) {
     var prevComponentInstance = this._renderedComponent;
-    var prevRenderedElement = prevComponentInstance._currentElement;
+    var preEOenderedElement = prevComponentInstance._currentElement;
     var nextRenderedElement = this._renderValidatedComponent();
 
     var debugID = 0;
@@ -22038,7 +22038,7 @@ var ReactCompositeComponent = {
       debugID = this._debugID;
     }
 
-    if (shouldUpdateReactComponent(prevRenderedElement, nextRenderedElement)) {
+    if (shouldUpdateReactComponent(preEOenderedElement, nextRenderedElement)) {
       ReactReconciler.receiveComponent(prevComponentInstance, nextRenderedElement, transaction, this._processChildContext(context));
     } else {
       var oldHostNode = ReactReconciler.getHostNode(prevComponentInstance);
@@ -30322,12 +30322,12 @@ var TopNav = function TopNav() {
       _react2.default.createElement(
         "li",
         { className: "split-button-1" },
-        "VR"
+        "EO"
       ),
       _react2.default.createElement(
         "li",
         { className: "split-button-2" },
-        "Victor Reyes"
+        "Elise Olivares"
       ),
       _react2.default.createElement("li", { className: "info-icon icon" }),
       _react2.default.createElement("li", { className: "notifications-icon icon" })

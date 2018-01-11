@@ -17,5 +17,6 @@ json.lists @board.lists do |list|
     json.board_id card.list.board_id
     json.position card.position
     json.labels card.labels.map(&:color)
+    json.archived card.archived
   end
 end

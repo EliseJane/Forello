@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import * as actions from '../../actions/CardActions';
-
 import CreateCardTileForm from './CreateCardTileForm';
+import CreateCardTileButton from './CreateCardTileButton';
 
 class CreateCardTileContainer extends React.Component {
   state = {
@@ -44,17 +44,25 @@ class CreateCardTileContainer extends React.Component {
   }
 
   render() {
-    return (
-      <CreateCardTileForm
-        listAddingCard={this.props.listAddingCard}
-        listId={this.props.listId}
-        title={this.state.title}
-        onSave={this.handleSave}
-        openAddCardForm={this.openAddCardForm}
-        closeAddCardForm={this.closeAddCardForm}
-        onChange={this.handleChange}
-      />
-    );
+    const isListAddingCard = this.props.listId === this.props.listAddingCard;
+    const classes = isListAddingCard ? 'active-card add-dropdown add-bottom' : 'add-dropdown add-bottom';
+    if (isListAddingCard) {
+      return (
+        <CreateCardTileForm
+          title={this.state.title}
+          onSave={this.handleSave}
+          closeAddCardForm={this.closeAddCardForm}
+          onChange={this.handleChange}
+          classes={classes}
+        />
+      );
+    } else {
+      return (
+        <CreateCardTileButton
+          openAddCardForm={this.openAddCardForm}
+        />
+      );
+    }
   }
 }
 

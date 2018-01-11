@@ -7,6 +7,10 @@ export default function statusReducer(state, action) {
     return 'BOARD_FETCHED_SUCCESSFULLY';
   } else if (action.type === 'FETCH_BOARDS_SUCCESS') {
     return 'BOARDS_FETCHED_SUCCESSFULLY';
+  } else if (action.type === 'FETCH_CARD_REQUEST') {
+    return 'FETCHING_CARD';
+  } else if (action.type === 'FETCH_CARD_SUCCESS') {
+    return 'CARD_FETCHED_SUCCESSFULLY';
   } else {
     return state;
   }

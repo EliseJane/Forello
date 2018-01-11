@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import { Link } from 'react-router-dom';
 
 const CardTile = (props) => {
@@ -23,19 +21,23 @@ const CardTile = (props) => {
     )
   }
 
-  return (
-    <div className="card-background">
-      <Link to={`/cards/${props.card.id}`}>
-        <div className="card "><i className="edit-toggle edit-icon sm-icon"></i>
-            <div className="card-info">
-              {labelsHTML}
-              <p>{props.card.title}</p>
-            </div>
-            {cardIconsHTML()}
+  if (props.card.archived) {
+    return null;
+  } else {
+    return (
+      <Link to={`/cards/${props.card.id}`} data-index={props.idx}>
+        <div className="card-background">
+          <div className="card "><i className="edit-toggle edit-icon sm-icon"></i>
+              <div className="card-info">
+                {labelsHTML}
+                <p>{props.card.title}</p>
+              </div>
+              {cardIconsHTML()}
+          </div>
         </div>
       </Link>
-    </div>
-  );
+    );
+  }
 };
 
 export default CardTile;

@@ -2,23 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import List from './List';
-
 import * as actions from '../../actions/ListActions';
 
 class ListContainer extends React.Component {
-  static contextTypes = {
-    store: PropTypes.object
-  };
-
   state = {
     title: this.props.list.title,
     editing: false
   };
 
+  static contextTypes = {
+    store: PropTypes.object
+  };
+
   allTheseCards = () => {
-    const store = this.context.store;
-    const cards = store.getState().cards;
-    return cards.filter(card => card.list_id === this.props.list.id);
+    const cards = this.context.store.getState().cards;
+    let theseCards = cards.filter(card => card.list_id === this.props.list.id);
+    return theseCards.sort((a, b) => a.position - b.position);
   };
 
   handleClick = () => {
@@ -73,7 +72,6 @@ class ListContainer extends React.Component {
           listAddingCard={this.props.listAddingCard}
           changeListAddingCard={this.props.changeListAddingCard}
           newPosition={this.lastPosition()+100}
-          allCards={this.allTheseCards}
         />
       </div>
     )

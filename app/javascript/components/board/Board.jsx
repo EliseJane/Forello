@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import ListContainer from './ListContainer';
 import CreateListTileContainer from './CreateListTileContainer';

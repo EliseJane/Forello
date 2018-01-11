@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import * as actions from '../../actions/ListActions';
-
 import CreateListTileForm from './CreateListTileForm';
 
 class CreateListTileContainer extends React.Component {

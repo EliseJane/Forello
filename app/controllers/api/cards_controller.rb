@@ -42,9 +42,23 @@ class Api::CardsController < ApplicationController
       render 'api/shared/error', status: :unprocessable_entity
   end
 
+  def destroy
+    @card = Card.find(params[:id])
+
+    if @card.destroy()
+      render :destroy, status: :ok
+    else
+      @error = @card.errors.full_messages.join(', ')
+      render 'api/shared/error', status: :unprocessable_entity
+    end
+    rescue ActiveRecord::RecordNotFound
+      @error = "Could not find card with id of #{params[:id]}"
+      render 'api/shared/error', status: 404
+  end
+
   private
 
   def card_params
-    params.require(:card).permit(:title, :list_id, :position)
+    params.require(:card).permit(:title, :list_id, :position, :description, :archived)
   end
 end

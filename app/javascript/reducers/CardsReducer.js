@@ -11,6 +11,11 @@ export default function cardsReducer(state = [], action) {
     newCard.list_id = Number(newCard.list_id);
 
     return state.concat(newCard);
+  } else if (action.type === 'FETCH_CARD_SUCCESS') {
+    const excludedCards = state.filter(card => card.id !== action.card.id);
+    const { other, ...newCard } = action.card;
+
+    return excludedCards.concat(newCard);
   } else {
     return state;
   }
