@@ -1,3 +1,10 @@
+## To run locally
+* git clone
+* navigate to directory
+* rake db:migrate
+* rails server
+
+
 # Rails + Webpack + React + Heroku
 
 ## Where code should live
